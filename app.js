@@ -1,22 +1,24 @@
-// Carregando Módulos
-
 const express = require("express");
-const handlebars = require("express-handlebars");
+const { engine } = require("express-handlebars");
 const bodyParser = require("body-parser");
-const app = express()
-//const mongoose = require("mongoose");
+const app = express();
+const admin = require("./routes/admin")
 
 // Configurações 
 
+// Body Parser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
+// Handlebars
+app.engine('handlebars', engine({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
 
-//Rotas 
+// Rotas 
+    app.use("/admin",admin)
+// Outros
 
-
-
-//Outros
-
-const PORT = 8081
+const PORT = 8081;
 app.listen(PORT, () => {
-    console.log("Servidor rodando!")
+    console.log("Servidor rodando!");
 });
