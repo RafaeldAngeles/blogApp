@@ -2,7 +2,8 @@ const express = require("express");
 const { engine } = require("express-handlebars");
 const bodyParser = require("body-parser");
 const app = express();
-const admin = require("./routes/admin")
+const admin = require("./routes/admin");
+const path = require("path");
 
 // Configurações 
 
@@ -14,8 +15,15 @@ app.use(bodyParser.json());
 app.engine('handlebars', engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
+
+//public
+
+app.use(express.static(path.join(__dirname, "public")))
+
 // Rotas 
-    app.use("/admin",admin)
+app.use("/admin",admin)
+
+
 // Outros
 
 const PORT = 8081;
