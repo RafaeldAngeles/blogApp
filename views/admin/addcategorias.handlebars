@@ -1,14 +1,16 @@
+{{#each erros}}
+    <div class="alert alert-danger"> {{texto}} </div>
+{{/each}}
 
-<h3>Nova Categoria:</h3>
-<div class="card">
-    <div class="card-body">
-        <form action="/admin/categorias/nova" method="POST">
-            <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" placeholder="Nome da Categoria" class="form-control">
-            <label for="slug">Slug:</label>
-                <input type="text" id="slug" name="slug" placeholder="Slug da categoria" class="form-control">
-                <br>
-            <button type="submit" class="btn btn-success">Criar categoria</button>
-        </form>
+<h2>Adicionar Categoria</h2>
+<form action="/admin/categorias/nova" method="POST">
+    <div class="form-group">
+        <label for="nome">Nome da Categoria</label>
+        <input type="text" name="nome" id="nome" class="form-control" placeholder="Digite o nome">
     </div>
-</div>
+    <div class="form-group">
+        <label for="slug">Slug da Categoria</label>
+        <input type="text" name="slug" id="slug" class="form-control" placeholder="Digite o slug">
+    </div>
+    <button type="submit" class="btn btn-success">Salvar</button>
+</form>
