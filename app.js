@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const app = express();
 const admin = require("./routes/admin");
 const path = require("path");
+const mongoose = require("mongoose");
+const { error } = require("console");
 
 // Configurações 
 
@@ -14,6 +16,14 @@ app.use(bodyParser.json());
 // Handlebars
 app.engine('handlebars', engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+
+//mongoose
+    mongoose.Promise = global.Promise;
+    mongoose.connect("mongodb://localhost/blogapp").then(() => {
+        console.log("Conexão feita com sucesso!")
+    }).catch((error) => {
+        console.log("Erro ao se conectar com o bando dados: "+error)
+    })
 
 
 //public
